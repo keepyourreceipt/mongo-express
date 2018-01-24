@@ -12,5 +12,10 @@ router.get('/signup', (req, res, next) => {
   res.render('signup');
 });
 
+// POST /signup
+router.post('/signup', (req, res, next) => {
+  res.send("Post to /signup");
+});
+
 // Export module to allow other files to access it
 module.exports = router;
