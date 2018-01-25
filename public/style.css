@@ -1,7 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: #eee;
+}
+
 .form-container {
-  max-width: 30vw;
-  padding: 4vw;
-  margin: 0 auto;
+  max-width: 40vw;
+  padding: 2vw 4vw 4vw;
+  border-radius: 3px;
+  margin: 10vh auto 0;
+  background: #fff;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .form-field {
@@ -16,7 +28,17 @@
   width: 100%;
   padding: 10px;
   border: none;
-  background: #efefef;
+  background: #eee;
   margin-top: 5px;
-  border-radius: 2px;
+  border-radius: 3px;
+}
+
+input[type="submit"] {
+  border: none;
+  background: lightblue;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
 }
