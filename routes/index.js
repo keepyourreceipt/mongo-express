@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Add root route
 router.get('/', (req, res, next) => {
-  res.render('layout');
+  res.render('main');
 });
 
 // Add a get route for the signup page
