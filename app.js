@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const routes = require('./routes');
 
 // Set database connection info and credentials
@@ -10,6 +11,13 @@ const databaseName = 'mongo-express';
 
 // Instantiate express app
 const app = express();
+
+// Track sessions for logged in users
+app.use(session({
+  secret: "mongo-express session secret",
+  resave: true,
+  saveUninitialized: false
+}));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -1,0 +1,13 @@
+extends layout.pug
+block content
+  div.form-container
+    h2 Login
+    form(method="post" action="/login")
+      div.form-field
+        label(for="email") Email
+        input(type="email" name="email")
+      div.form-field
+        label(for="password") Password
+        input(type="password" name="password")
+      div.form-submit
+        input(type="submit" value="Login")

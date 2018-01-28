@@ -49,5 +49,15 @@ router.get('/profile', (req, res, next) => {
   res.render('profile');
 });
 
+// GET login route
+router.get('/login', (req, res, next) => {
+  res.render('login');
+});
+
+// POST login route
+router.post('/login', (req, res, next) => {
+  res.send('Logged in');
+});
+
 // Export module to allow other files to access it
 module.exports = router;
