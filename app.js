@@ -1,6 +1,7 @@
 // Require application modules
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const routes = require('./routes');
 
 // Set database connection info and credentials
@@ -9,6 +10,9 @@ const databaseName = 'mongo-express';
 
 // Instantiate express app
 const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // USer router as defined in /routes dir
 app.use(routes);
