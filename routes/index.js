@@ -46,7 +46,23 @@ router.post('/signup', (req, res, next) => {
 
 // GET profile route
 router.get('/profile', (req, res, next) => {
-  res.render('profile');
+  // If the user does not have a session ID, throw access error
+  if ( ! req.session.userId ) {
+    var error = new Error('Please login to view this content');
+    error.status = 403;
+    next(error);
+  } else {
+
+    // Find user by session id, and execute query
+    User.findById(req.session.userId).exec(function( error, user ) {
+      if ( error ) {
+        next(error);
+      } else {
+        // If no errors returned, render profile template and pass user data
+        res.render('./profile', { title: 'Profile', username: user.name, email: user.email });
+      }
+    });
+  }
 });
 
 // GET login route
@@ -56,7 +72,31 @@ router.get('/login', (req, res, next) => {
 
 // POST login route
 router.post('/login', (req, res, next) => {
-  res.send('Logged in');
+  if ( req.body.email && req.body.password ) {
+    // Call authenticate function on User scheme as defined in user.js
+    User.authenticate(req.body.email, req.body.password, function(error, user) {
+
+      // If error passed back by the authenticate function or user does not exist
+      // throw new error
+      if ( error || !user ) {
+        var error = new Error("Could not log in");
+        error.status = 401;
+        return next(error);
+      } else {
+        
+        // If no errors, create session and assign session user id to user(document) id from database
+        req.session.userId = user._id;
+
+        // User is authenticated, redirect user to profile page
+        return res.redirect('/profile');
+      }
+    });
+  } else {
+    // Form missing fields
+    var error = new Error('All fields are required');
+    error.status = 401;
+    next(error);
+  }
 });
 
 // Export module to allow other files to access it
