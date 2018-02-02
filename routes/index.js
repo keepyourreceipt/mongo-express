@@ -83,7 +83,7 @@ router.post('/login', (req, res, next) => {
         error.status = 401;
         return next(error);
       } else {
-        
+
         // If no errors, create session and assign session user id to user(document) id from database
         req.session.userId = user._id;
 

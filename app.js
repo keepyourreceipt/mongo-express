@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(routes);
 
 // Add static server and server static assets from /public dir
-app.use(express.static('./public'));
+app.use(express.static(__dirname + '/public'));
 
 // Set default template engine to use pug / jade
 app.set('view engine', 'pug');
