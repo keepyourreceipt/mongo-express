@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const routes = require('./routes');
 
+
 // Set database connection info and credentials
 const databaseHost = 'mongodb://localhost:27017/';
 const databaseName = 'mongo-express';

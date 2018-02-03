@@ -2,6 +2,8 @@
 const express = require('express');
 const User = require('../models/user');
 const router = express.Router();
+const multer  = require('multer')
+const upload = multer({ dest: './public/uploads/' })
 
 // Add root route
 router.get('/', (req, res, next) => {
@@ -14,14 +16,15 @@ router.get('/signup', (req, res, next) => {
 });
 
 // POST /signup
-router.post('/signup', (req, res, next) => {
+router.post('/signup', upload.single('avatar'), (req, res, next) => {
   if ( req.body.name && req.body.email && req.body.password ) {
 
     // Build object to insert into database
     var userData = {
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      profileImg: "uploads/" + req.file.filename
     }
 
     User.create(userData, (err, user) => {
@@ -59,7 +62,7 @@ router.get('/profile', (req, res, next) => {
         next(error);
       } else {
         // If no errors returned, render profile template and pass user data
-        res.render('./profile', { title: 'Profile', username: user.name, email: user.email });
+        res.render('./profile', { title: 'Profile', username: user.name, email: user.email, profileImg: user.profileImg });
       }
     });
   }

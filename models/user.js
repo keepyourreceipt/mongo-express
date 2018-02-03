@@ -21,6 +21,12 @@ var UserSchema = new mongoose.Schema ({
     required: true,
     unique: false,
     trim: false
+  },
+  profileImg: {
+    type: String,
+    required: false,
+    unieuq: true,
+    trim: false
   }
 });
 

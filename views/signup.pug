@@ -2,7 +2,7 @@ extends layout.pug
 block content
   div.form-container
     h2 Create an Account
-    form(method="post" action="/signup")
+    form(method="post" action="/signup" enctype="multipart/form-data")
       div.form-field
         label(for="name") Your Name
         input(type="text" name="name")
@@ -13,7 +13,7 @@ block content
         label(for="password") Password
         input(type="password" name="password")
       div.form-field
-          input(type="file" name="image" accept="image/*")
+          input(type="file" name="avatar" accept="image/*")
       div.form-submit
         input(type="submit" value="Signup")
     div
